@@ -8,9 +8,15 @@ export default {
     const toggleMenu = () => {
       menuOpen.value = !menuOpen.value;
     };
+
+    const reloadPage = () => {
+      window.location.reload(); // Recarga la página completamente
+    };
+
     return {
       menuOpen,
-      toggleMenu
+      toggleMenu,
+      reloadPage, // Exportamos la función para usarla en el template
     };
   },
 };

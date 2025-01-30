@@ -3,7 +3,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
       <div class="px-2 flex items-center w-full justify-between">
       <div class="flex items-center w-[30%]">
-        <img class="w-[80px] sm:w-[115px]" alt="Logo" src="../../assets/LogoRG.png"> 
+        <img 
+        class="w-[80px] sm:w-[115px]" 
+        alt="Logo" 
+        src="../../assets/LogoRG.png"
+        @click="reloadPage"
+        > 
           <button 
             @click="toggleMenu"
             class="absolute right-0 md:hidden text-[#4A3728] hover:text-orange-500 transition duration-300"

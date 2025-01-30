@@ -9,9 +9,11 @@
       <!-- Slides Container -->
         <div class="flex items-center">
           <div 
-            class="flex transition-transform duration-700 ease-in-out"
+            class="flex transition-transform duration-1000 ease-in-out"
             :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
             id="carouselSlides"
+            @mouseenter="stopAutoSlide"
+            @mouseleave="startAutoSlide"
             >
             <img v-for="(image, index) in images" 
             :key="index" 
