@@ -47,9 +47,10 @@
           <h3 class="text-primary font-display text-1xl sm:text-3xl md:text-4xl text-left">
             Déjanos tus datos
           </h3>
+
           <div class="grid grid-cols-1 text-gray-700 mb-2 pt-4">
             <input
-              class="mb- py-4 pt-4 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 bg-gradient-to-tr  from-orange-400 via-orange-950 to-orange-400 text-white placeholder-white placeholder:align-middle"
+              class="mb-4 py-4 pt-4 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 bg-gradient-to-tr  from-orange-400 via-orange-950 to-orange-400 text-white placeholder-white"
               type="text"
               v-model="nombre"
               placeholder="Nombre*"
@@ -57,7 +58,7 @@
               @input="sanitizeInput('nombre')"
             />
             <input
-              class="mb-4 py-4 pt-4 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 bg-gradient-to-tr from-orange-600 via-orange-950 to-orange-600 text-white placeholder-white"
+              class="mb-4 py-4 pt-4 px-6 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 bg-gradient-to-tr from-orange-600 via-orange-950 to-orange-600 text-white placeholder-white"
               type="text"
               v-model="celular"
               placeholder="Celular*"
@@ -73,6 +74,7 @@
               @input="sanitizeInput('mensaje')"
             ></textarea>
           </div>
+          
           <div class="flex items-center">
             <input
               id="dataConsent"
