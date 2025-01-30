@@ -12,7 +12,7 @@
     <!-- Caja de chat -->
     <div
       v-if="isOpen"
-      class="chatbox mt-2 w-80 h-96 bg-white border border-gray-300 shadow-lg rounded-lg flex flex-col"
+      class="chatbox mt-2  w-full sm:w-80 h-96 bg-white border border-gray-300 shadow-lg rounded-lg flex flex-col"
     >
       <!-- Encabezado del chat -->
       <div class="bg-orange-500 text-white p-4 rounded-t-lg flex justify-between items-center">

@@ -8,7 +8,7 @@
       <p class="text-center text-gray-600 text-lg mb-4 max-w-2xl mx-auto">
         Déjanos tus datos para contactarte y brindarte información personalizada, conecta con nosotros en redes sociales o visítanos en nuestro punto de venta.
       </p>
-      <div class="grid grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 ">
         <!-- Social Media -->
         <div>
           <h3 class="text-primary font-display text-sm sm:text-3xl md:text-4xl text-left mb-4">
@@ -43,7 +43,7 @@
           </ul>        
         </div>
         <!-- Formulario -->
-        <div>
+        <div class="flex flex-col space-y-8">
           <h3 class="text-primary font-display text-1xl sm:text-3xl md:text-4xl text-left">
             Déjanos tus datos
           </h3>
@@ -97,7 +97,7 @@
           </button>
         </div>
         <!-- Punto de Venta -->
-        <div>
+        <div class="flex flex-col space-y-8">
           <h3 class="text-primary font-display text-1xl sm:text-3xl md:text-4xl text-left">
             Punto de Venta
           </h3>
