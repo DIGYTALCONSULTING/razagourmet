@@ -8,7 +8,7 @@
       <p class="text-center text-gray-600 text-lg mb-4 max-w-2xl mx-auto">
         Déjanos tus datos para contactarte y brindarte información personalizada, conecta con nosotros en redes sociales o visítanos en nuestro punto de venta.
       </p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 ">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Social Media -->
         <div>
           <h3 class="text-primary font-display text-sm sm:text-3xl md:text-4xl text-left mb-4">
@@ -17,7 +17,7 @@
           <ul class="flex gap-10">
             <li>
               <a href="https://www.instagram.com/raza_gourmet/" target="_blank"
-                 class="flex items-center space-x-4 hover:text-[#f3132b] pt-8">
+                class="flex items-center space-x-4 hover:text-[#f3132b] pt-8">
                 <font-awesome-icon :icon="['fab', 'instagram']" class="w-10 h-10 rounded-full" />
                 <span class="text-lg text-gray-700">Instagram</span>
               </a>
@@ -26,77 +26,85 @@
           <ul class="flex gap-10">
             <li>
               <a href="https://web.facebook.com/profile.php/?id=100094371744076&_rdc=1&_rdr" target="_blank"
-                 class="flex items-center space-x-4 hover:text-[#1346f3] pt-8">
+                class="flex items-center space-x-4 hover:text-[#1346f3] pt-8">
                 <font-awesome-icon :icon="['fab', 'facebook']" class="w-10 h-10 rounded-full" />
                 <span class="text-lg text-gray-700">Facebook</span>
               </a>
-            </li> 
+            </li>
           </ul>
           <ul class="flex gap-10">
             <li>
               <a href="https://wa.me/573224681595" target="_blank"
-                 class="flex items-center space-x-4 hover:text-[#43f313] pt-8">
+                class="flex items-center space-x-4 hover:text-[#43f313] pt-8">
                 <font-awesome-icon :icon="['fab', 'whatsapp']" class="w-10 h-10 rounded-full" />
                 <span class="text-lg text-gray-700">WhatsApp</span>
               </a>
-            </li> 
-          </ul>        
+            </li>
+          </ul>
         </div>
-        <!-- Formulario -->
+        <!-- Formulario Integrado con Google Forms -->
         <div class="flex flex-col space-y-8">
           <h3 class="text-primary font-display text-1xl sm:text-3xl md:text-4xl text-left">
             Déjanos tus datos
           </h3>
+          <form @submit.prevent="enviarFormulario" class="grid grid-cols-1 text-gray-700 mb-2 pt-4">
 
-          <div class="grid grid-cols-1 text-gray-700 mb-2 pt-4">
+            <!-- Campo Nombre -->
             <input
-              class="mb-4 py-4 pt-4 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 bg-gradient-to-tr  from-orange-400 via-orange-950 to-orange-400 text-white placeholder-white"
+              class="mb-4 py-4 pt-4 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 bg-gradient-to-tr from-orange-400 via-orange-950 to-orange-400 text-white placeholder-white"
               type="text"
+              name="entry.Nombre" 
               v-model="nombre"
               placeholder="Nombre*"
               maxlength="50"
-              @input="sanitizeInput('nombre')"
+              required
             />
+            <!-- Campo Celular -->
             <input
               class="mb-4 py-4 pt-4 px-6 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 bg-gradient-to-tr from-orange-600 via-orange-950 to-orange-600 text-white placeholder-white"
-              type="text"
+              type="tel"
+              name="entry.Celular" 
               v-model="celular"
               placeholder="Celular*"
               maxlength="10"
-              @input="sanitizeInput('celular')"
+              required
             />
+            <!-- Campo Mensaje -->
             <textarea
-              class="mb-4 py-4 pt-4 px-6 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 bg-gradient-to-tr  from-orange-600 via-orange-950 to-orange-600 text-white placeholder-white"
+              class="mb-4 py-4 pt-4 px-6 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 bg-gradient-to-tr from-orange-600 via-orange-950 to-orange-600 text-white placeholder-white"
+              name="entry.Mensaje" 
               v-model="mensaje"
               placeholder="Mensaje*"
-              required
               maxlength="150"
-              @input="sanitizeInput('mensaje')"
+              required
             ></textarea>
-          </div>
-          
-          <div class="flex items-center">
-            <input
-              id="dataConsent"
-              type="checkbox"
-              v-model="dataConsent"
-              class="w-5 h-5 text-orange-500 border-orange-300 rounded focus:ring focus:ring-blue-300"
-            />
-            <label for="dataConsent" class="ml-2 text-sm text-gray-700">
-              Autorizo el tratamiento de mis datos personales de acuerdo con la
-              <button @click.prevent="abrirModal" class="text-orange-500 underline">
-                Política de Privacidad
-              </button>.
-            </label>
-          </div>
-          <button
-            @click="enviarFormulario"
-            :disabled="!formValido"
-            class="mt-2 px-4 py-2 text-white rounded-md hover:bg-orange-600"
-            :class="formValido ? 'bg-orange-900' : 'bg-gray-400 cursor-not-allowed'"
-          >
-            Enviar
-          </button>
+            <!-- Checkbox de autorización -->
+            <div class="flex items-center">
+              <input
+                id="dataConsent"
+                type="checkbox"
+                name="entry." 
+                v-model="dataConsent"
+                class="w-5 h-5 text-orange-500 border-orange-300 rounded focus:ring focus:ring-blue-300"
+                required
+              />
+              <label for="dataConsent" class="ml-2 text-sm text-gray-700">
+                Autorizo el tratamiento de mis datos personales de acuerdo con la
+                <button @click.prevent="abrirModal" class="text-orange-500 underline">
+                  Política de Privacidad
+                </button>.
+              </label>
+            </div>
+            <!-- Botón de enviar -->
+            <button
+              type="submit"
+              class="mt-2 px-4 py-2 text-white rounded-md hover:bg-orange-600"
+              :class="dataConsent ? 'bg-orange-900' : 'bg-gray-400 cursor-not-allowed'"
+              :disabled="!dataConsent"
+            >
+              Enviar
+            </button>
+          </form>
         </div>
         <!-- Punto de Venta -->
         <div class="flex flex-col space-y-8">
@@ -119,16 +127,12 @@
           </div>
         </div>
       </div>
-    </div>
-    <!-- Modal -->
-    <div
-      v-if="mostrarModal"
-      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-    >
-      <div class="bg-white p-6 rounded-md shadow-lg max-w-lg w-full">
-        <h2 class="text-secondary font-mono text-1xl sm:text-3xl md:text-4xl">Política de Privacidad</h2>
-        <p class="text-gray-700 text-sm overflow-y-auto max-h-64 text-justify">
-          Política de Tratamiento de Datos Personales de Raza Gourmet
+      <!-- Modal de Política de Privacidad -->
+      <div v-if="mostrarModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white p-6 rounded-md shadow-lg max-w-lg w-full">
+          <h2 class="text-secondary font-mono text-1xl sm:text-3xl md:text-4xl">Política de Privacidad</h2>
+          <p class="text-gray-700 text-sm overflow-y-auto max-h-64 text-justify">
+            Política de Tratamiento de Datos Personales de Raza Gourmet
             Fecha de entrada en vigencia: [Fecha específica, ejemplo: 10 de enero de 2025]
 
             En cumplimiento de la Ley 1581 de 2012 y el Decreto 1377 de 2013, Raza Gourmet adopta la presente política para garantizar la protección, privacidad y seguridad de los datos personales de los titulares de la información recolectada en el desarrollo de su actividad comercial.
@@ -194,14 +198,18 @@
 
             Raza Gourmet
             Comprometidos con la protección de tu privacidad
-        </p>
-        <div class="mt-4 flex justify-end">
-          <button @click="cerrarModal" class="px-4 py-2 bg-orange-900 text-white rounded-md hover:bg-orange-600">
-            Cerrar
-          </button>
+          </p>
+          <div class="mt-4 flex justify-end">
+            <button @click="cerrarModal" class="px-4 py-2 bg-orange-900 text-white rounded-md hover:bg-orange-600">
+              Cerrar
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </section>
 </template>
 <script src="./encuentranosPage.js"/>
+
+
+

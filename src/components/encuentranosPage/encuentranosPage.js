@@ -47,21 +47,36 @@ export default {
       );
     });
 
-    const enviarFormulario = () => {
-      console.log({
+    // Enviar formulario a Google Sheets
+    const enviarFormulario = async () => {
+      const datos = {
         nombre: nombre.value,
         celular: celular.value,
         mensaje: mensaje.value,
-        dataConsent: dataConsent.value,
-      });
+      };
 
-      alert("Formulario enviado con éxito.");
+      try {
+        await fetch("https://script.google.com/macros/s/AKfycbyEC2-NAW8NXXB_B-GZS0DoJmJEeOhUGxK8k6tBi5BXjw_I7unAG5dp_g-wbAlQZWXKFQ/exec", { // Reemplaza con la URL de tu Web App
+          method: "POST",
+          mode: "no-cors", // 👈 Esto evita el problema de CORS
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(datos),
+        });
 
-      // Limpiar los campos del formulario
-      nombre.value = "";
-      celular.value = "";
-      mensaje.value = "";
-      dataConsent.value = false;
+        console.log("Solicitud enviada correctamente");
+        alert("✅ Datos enviados correctamente a Google Sheets");
+
+        // Limpiar los campos del formulario después del envío exitoso
+        nombre.value = "";
+        celular.value = "";
+        mensaje.value = "";
+        dataConsent.value = false;
+      } catch (error) {
+        console.error("Error:", error);
+        alert("⚠️ Hubo un problema al enviar los datos.");
+      }
     };
 
     // Estado y lógica para el menú
